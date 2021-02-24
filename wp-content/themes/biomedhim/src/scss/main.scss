@@ -177,6 +177,11 @@ body{
         justify-content: center;
         padding: 6px;
         height: 100%;
+        cursor: pointer;
+        transition: 0.5s;
+        &:hover{
+          background-color: #4bc3e8;
+        }
         svg{
           width: 24px;
           height: 24px;
@@ -546,6 +551,10 @@ body{
     display: inline-flex;
     padding: 13px 69px;
     width: auto;
+    transition: 0.5s;
+    &:hover{
+      background-color: #4BC3E8;
+    }
   }
   #map{
     height: 624px;
