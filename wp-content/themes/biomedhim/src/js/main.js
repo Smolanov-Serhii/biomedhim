@@ -35,11 +35,12 @@ $(document ).ready(function() {
     }
     if ($('#map').length){
         if (  jQuery(window).width() >= 1100 ) {
-            var FirstCoord = 53.925701;
-            var SecondCoord = 30.341069;
 
-            var CenterFirstCoord = 53.925678;
-            var CenterSecondCoord = 30.338758;
+            var FirstCoord = 54.830453;
+            var SecondCoord = 56.086357;
+
+            var CenterFirstCoord = 54.830525;
+            var CenterSecondCoord = 56.088109;
         } else {
             var FirstCoord = 53.925701;
             var SecondCoord = 30.341069;
@@ -48,7 +49,7 @@ $(document ).ready(function() {
             var CenterSecondCoord = SecondCoord;
         }
         ymaps.ready(function () {
-            var IconUrl = $('.uni-footer__map').data('icon');
+            var IconUrl = $('.bio-map').data('icon');
             var myMap = new ymaps.Map('map', {
                     center: [CenterFirstCoord, CenterSecondCoord],
                     controls: [],
@@ -97,7 +98,101 @@ $(document ).ready(function() {
         });
     }
 
+    if ($('#map-contacts').length){
 
+            var FirstCoord = 54.830517;
+            var SecondCoord = 56.086317;
+
+            var CenterFirstCoord = 54.830517;
+            var CenterSecondCoord = 56.086317;
+
+        ymaps.ready(function () {
+            var IconUrl = $('.bio-map').data('icon');
+            var myMap = new ymaps.Map('map-contacts', {
+                    center: [CenterFirstCoord, CenterSecondCoord],
+                    controls: [],
+                    zoom: 16
+                }, {
+                    searchControlProvider: true
+                }),
+
+                // Создаём макет содержимого.
+                MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+                    '<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+                ),
+
+                myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+                }, {
+                    // Опции.
+                    // Необходимо указать данный тип макета.
+                    // Своё изображение иконки метки.
+                    iconImageHref: "",
+                    // Размеры метки.
+                    iconImageSize: [0, 0],
+                    // Смещение левого верхнего угла иконки относительно
+                    // её "ножки" (точки привязки).
+                }),
+                myPlacemarkWithContent = new ymaps.Placemark([FirstCoord, SecondCoord], {
+                }, {
+                    // Опции.
+                    // Необходимо указать данный тип макета.
+                    iconLayout: 'default#imageWithContent',
+                    // Своё изображение иконки метки.
+                    iconImageHref: IconUrl,
+                    // Размеры метки.
+                    iconImageSize: [72, 87],
+                    // Смещение левого верхнего угла иконки относительно
+                    // её "ножки" (точки привязки).
+                    iconImageOffset: [-40, -90],
+                    // Смещение слоя с содержимым относительно слоя с картинкой.
+                    iconContentOffset: [15, 15],
+                    // Макет содержимого.
+                    iconContentLayout: MyIconContentLayout
+                });
+
+            myMap.geoObjects
+                // .add(myPlacemark)
+                .add(myPlacemarkWithContent);
+        });
+    }
+
+    $(".menu-item-has-children", "#category-menu").hover(
+        function() {
+            $(this).find(".sub-menu").fadeIn(300);
+        },
+        function() {
+            $(this).find(".sub-menu").fadeOut(300);
+        }
+    );
+
+    if ($('.quantity').length){
+        $( '.quantity' ).each(function( index ) {
+            let col = $(this).find('input');
+            let plus = $(this).find('.quantity-arrow-plus');
+            let minus = $(this).find('.quantity-arrow-minus');
+            let step = $(this).find('input').attr('step');
+            let min = $(this).find('input').attr('min');
+            var total = 0;
+            plus.click(function() {
+                total = (col.val() * 1) + (step * 1);
+                col.val(total);
+                var check = col.val();
+                if (check > 1){
+                    minus.removeClass('disable');
+                }
+            });
+            minus.click(function() {
+                var check = col.val();
+                if (check > min){
+                    col.val(parseInt(col.val())-step);
+                    minus.removeClass('disable');
+                } else {
+                    minus.addClass('disable');
+                }
+
+            });
+        });
+    }
 
 });
 

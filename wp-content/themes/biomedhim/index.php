@@ -99,25 +99,21 @@ get_header();
         </h2>
         <div class="bio-categories__list">
             <?php
-            $args = array(
-                'parent' => '17',
-                'hide_empty' => false,
-                'orderby' => 'id',
-                'order' => 'ASC',
-            );
-            $terms = get_terms('product_cat', $args);
-            if ($terms) {
-                foreach ($terms as $term) {
-                    echo '<a href="' . esc_url(get_term_link($term)) . '" class="bio-categories__item">';
-                    echo '<div class="bio-categories__img">';
-                    woocommerce_subcategory_thumbnail($term);
-                    echo '</div>';
-                    echo '<h2 class="bio-categories__item-title">';
-                    echo $term->name;
-                    echo '</h2>';
-                    echo '</a>';
-                }
-            }
+                if( have_rows('ssylki_na_kategorii') ):
+                    while( have_rows('ssylki_na_kategorii') ) : the_row();
+                        $subtitle = get_sub_field('zagolovok_dlya_ssilki');
+                        $subimage = get_sub_field('kartinka_dlya_kategorii');
+                        $sublink = get_sub_field('ssilka_na_kategoriyu');
+                        echo '<a href="' . $sublink . '" class="bio-categories__item">';
+                        echo '<div class="bio-categories__img">';
+                        echo '<img src="' . $subimage . '" alt="">';
+                        echo '</div>';
+                        echo '<h2 class="bio-categories__item-title">';
+                        echo $subtitle;
+                        echo '</h2>';
+                        echo '</a>';
+                    endwhile;
+                endif;
             ?>
             <a href="<?php echo get_home_url(); ?>/shop" class="bio-categories__item item-more">
                 <span class="circle"></span>
@@ -201,7 +197,7 @@ get_header();
             </div>
         </div>
     </section>
-    <section class="bio-map">
+    <section class="bio-map" data-icon="<?php echo the_field('ikonka_dlya_markera_kkarty');?>">
         <div class="bio-map__container">
             <div class="bio-map__form">
                 <h2 class="bio-map__title section-title">

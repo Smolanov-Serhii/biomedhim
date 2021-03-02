@@ -53,6 +53,7 @@ if ( ! function_exists( 'biomedhim_setup' ) ) :
 				'top-menu' => esc_html__( 'Верхнее меню', 'biomedhim' ),
 				'page-menu' => esc_html__( 'Меню страниц', 'biomedhim' ),
 				'footer-menu' => esc_html__( 'Меню футер', 'biomedhim' ),
+				'category-menu' => esc_html__( 'Меню магазина', 'biomedhim' ),
 			)
 		);
 
@@ -131,10 +132,21 @@ function biomedhim_widgets_init() {
 			'description'   => esc_html__( 'Add widgets here.', 'biomedhim' ),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
+			'before_title'  => '<div class="widget-title">',
+			'after_title'   => '</div>',
 		)
 	);
+    register_sidebar(
+        array(
+            'name'          => esc_html__( 'Сайдбар категории', 'biomedhim' ),
+            'id'            => 'sidebar-category',
+            'description'   => esc_html__( 'Добавте виджет', 'biomedhim' ),
+            'before_widget' => '<section id="%1$s" class="widget sidebar-category %2$s">',
+            'after_widget'  => '</section>',
+            'before_title'  => '<div class="widget-title">',
+            'after_title'   => '</div>',
+        )
+    );
 }
 add_action( 'widgets_init', 'biomedhim_widgets_init' );
 
@@ -299,13 +311,139 @@ function register_post_types(){
         'rewrite'             => true,
         'query_var'           => true,
     ] );
+    register_post_type( 'clients', [
+        'label'  => null,
+        'labels' => [
+            'name'               => 'Наши клиенты', // основное название для типа записи
+            'singular_name'      => 'Наши клиенты', // название для одной записи этого типа
+            'add_new'            => 'Добавить клиента', // для добавления новой записи
+            'add_new_item'       => 'Добавление клиента', // заголовка у вновь создаваемой записи в админ-панели.
+            'edit_item'          => 'Редактирование клиента', // для редактирования типа записи
+            'new_item'           => 'Новый клиент', // текст новой записи
+            'view_item'          => 'Смотреть клиента', // для просмотра записи этого типа.
+            'search_items'       => 'Искать клиента', // для поиска по этим типам записи
+            'not_found'          => 'Не найдено', // если в результате поиска ничего не было найдено
+            'not_found_in_trash' => 'Не найдено в корзине', // если не было найдено в корзине
+            'parent_item_colon'  => '', // для родителей (у древовидных типов)
+            'menu_name'          => 'Наши клиенты', // название меню
+        ],
+        'description'         => '',
+        'public'              => true,
+        // 'publicly_queryable'  => null, // зависит от public
+        // 'exclude_from_search' => null, // зависит от public
+        // 'show_ui'             => null, // зависит от public
+        // 'show_in_nav_menus'   => null, // зависит от public
+        'show_in_menu'        => null, // показывать ли в меню адмнки
+        // 'show_in_admin_bar'   => null, // зависит от show_in_menu
+        'show_in_rest'        => null, // добавить в REST API. C WP 4.7
+        'rest_base'           => null, // $post_type. C WP 4.7
+        'menu_position'       => null,
+        'menu_icon'           => 'dashicons-businessman',
+        //'capability_type'   => 'post',
+        //'capabilities'      => 'post', // массив дополнительных прав для этого типа записи
+        //'map_meta_cap'      => null, // Ставим true чтобы включить дефолтный обработчик специальных прав
+        'hierarchical'        => false,
+        'supports'            => [ 'title', 'editor'], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
+        'taxonomies'          => [],
+        'has_archive'         => true,
+        'rewrite'             => true,
+        'query_var'           => true,
+    ] );
 }
 
 add_filter('woocommerce_currency_symbol', 'change_existing_currency_symbol', 10, 2);
 
 function change_existing_currency_symbol( $currency_symbol, $currency ) {
     switch( $currency ) {
-        case 'RUB': $currency_symbol = ' руб.'; break;
+        case 'RUB': $currency_symbol = ' ₽'; break;
     }
     return $currency_symbol;
 }
+
+remove_action('woocommerce_single_product_summary','woocommerce_template_single_price', 10);
+add_action('woocommerce_single_product_summary','add_custom_article', 10);
+add_action('woocommerce_single_product_summary','woocommerce_template_single_price', 21);
+add_action( 'action_name', 'your_function_name' );
+
+function add_custom_article() {
+    $article_num = get_field( 'kod_tovara', $product_id);
+    echo '<span class="product-code"><strong>Код товара:</strong> ' . $article_num . '</span>';
+};
+
+
+
+add_filter('woocommerce_product_description_heading', 'devise_product_description_heading');
+function devise_product_description_heading() {
+    echo '<div class="desc-title">Краткое описание</div>'; //Вкладка Описание. Оставьте пустым что бы удалить текст
+}
+
+//Добавляем слово «Цена»
+//add_filter( 'woocommerce_get_price_html', 'custom_price_html', 100, 2 );
+//function custom_price_html( $price, $product ){
+//    if ( !empty ( $price ) ) {
+//        return 'Цена: '.$price;
+//    }
+//}
+
+// Adding and displaying additional product quantity custom fields
+add_action( 'woocommerce_product_options_pricing', 'additional_product_pricing_option_fields', 50 );
+function additional_product_pricing_option_fields() {
+    $domain = "woocommerce";
+    global $post;
+
+    echo '</div><div class="options_group pricing">';
+
+    woocommerce_wp_text_input( array(
+        'id'            => '_input_qty',
+        'label'         => __("Количество в упаковке", $domain ),
+        'placeholder'   => '',
+        'description'   => __("Количество единиц товара в упаковке", $domain ),
+        'desc_tip'      => true,
+    ) );
+
+
+    woocommerce_wp_text_input( array(
+        'id'            => '_step_qty',
+        'label'         => __("Шаг", $domain ),
+        'placeholder'   => '',
+        'description'   => __("Шаг единиц упаковок при заказе", $domain ),
+        'desc_tip'      => true,
+    ) );
+
+}
+
+// Saving product custom quantity values
+add_action( 'woocommerce_admin_process_product_object', 'save_product_custom_meta_data', 100, 1 );
+function save_product_custom_meta_data( $product ){
+    if ( isset( $_POST['_input_qty'] ) )
+        $product->update_meta_data( '_input_qty', sanitize_text_field($_POST['_input_qty']) );
+
+    if ( isset( $_POST['_step_qty'] ) )
+        $product->update_meta_data( '_step_qty', sanitize_text_field($_POST['_step_qty']) );
+}
+
+// Set product quantity field by product
+add_filter( 'woocommerce_quantity_input_args', 'custom_quantity_input_args', 10, 2 );
+function custom_quantity_input_args( $args, $product ) {
+    if( $product->get_meta('_input_qty') ){
+        $args['input_value'] = is_cart() ? $args['input_value'] : $product->get_meta('_input_qty');
+        $args['min_value']   = $product->get_meta('_input_qty');
+    }
+
+    if( $product->get_meta('_step_qty') ){
+        $args['step'] = $product->get_meta('_step_qty');
+    }
+
+    return $args;
+}
+
+add_filter('woocommerce_get_image_size_thumbnail','add_thumbnail_size',1,10);
+function add_thumbnail_size($size){
+
+    $size['width'] = 180;
+    $size['height'] = 185;
+    $size['crop']   = 1; //0 - не обрезаем, 1 - обрезка
+    return $size;
+}
+
+

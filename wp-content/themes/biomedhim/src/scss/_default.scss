@@ -22,10 +22,13 @@ ul, ol{
 pre{
   white-space: break-spaces;
 }
+img{
+  max-width: 100%;
+}
 p, pre{
   font-family: 'Montserrat', sans-serif;
   font-weight: 300;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1.5em;
   margin-bottom: 0.9em;
   @media all and (max-width: 1200px) {
