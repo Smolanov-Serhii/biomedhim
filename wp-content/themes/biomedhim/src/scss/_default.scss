@@ -136,10 +136,12 @@ a.button{
 a{
   color: #0E5A9E;
 }
+.woocommerce table.shop_attributes th{
+  width: 20%;
+}
 table{
   th{
     font-family: 'Montserrat', sans-serif;
-    background-color: #4BC3E8;
     font-weight: 600;
   }
   td{
@@ -149,11 +151,15 @@ table{
   th, td{
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 155%;
     color: #000000;
     border-top: 1px solid #0E5A9E;
     padding: 10px;
+    text-align: left;
+    p{
+      padding-left: 20px!important;
+    }
     @media all and (max-width: 830px) {
       font-size: 14px;
     }
@@ -173,12 +179,13 @@ table{
     }
   }
   tr{
+    &:nth-child(odd){
+      background-color: rgba(75,195,232,0.3);
+    }
     td, th{
       padding: 10px;
     }
-    &:nth-child(even){
-      background-color: #FEFBF2;
-    }
+
   }
 }
 

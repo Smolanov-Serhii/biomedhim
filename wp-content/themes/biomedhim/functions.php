@@ -446,4 +446,10 @@ function add_thumbnail_size($size){
     return $size;
 }
 
+add_filter( 'woocommerce_product_tabs', 'devise_woo_rename_reviews_tab', 98);
+function devise_woo_rename_reviews_tab($tabs) {
 
+    $tabs['additional_information']['title'] = 'Характеристики';
+
+    return $tabs;
+}

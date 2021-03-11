@@ -14,7 +14,12 @@ body{
     padding-top: 60px;
   }
 }
-
+.not-event{
+  & > a{
+    pointer-events: none;
+    font-weight: bolder!important;
+  }
+}
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -111,6 +116,9 @@ input[type="number"] {
   margin-bottom: 0;
 }
 .woocommerce div.product .woocommerce-tabs .panel{
+  h2{
+    margin: 30px 0;
+  }
   .desc-title{
     font-family: Montserrat;
     font-style: normal;
@@ -894,7 +902,7 @@ input[type="number"] {
     margin-right: 25px;
     .main-cat-menu{
       >li{
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         ul{
           padding-left: 10px;
           li{
@@ -1160,7 +1168,7 @@ input[type="number"] {
   }
 }
 .woocommerce div.product .woocommerce-tabs ul.tabs{
-  display: none;
+  //display: none; //Скрывание таб на описание товара
 }
 .employees{
   #map-contacts{
@@ -1179,6 +1187,8 @@ input[type="number"] {
   &__item{
     width: calc(25% - 40px);
     margin-right: 40px;
+    padding: 20px;
+    border: 1px solid black;
   }
   &__image{
     width: 100%;

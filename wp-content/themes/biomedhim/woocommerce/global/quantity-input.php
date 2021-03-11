@@ -35,6 +35,7 @@ if ( $max_value && $min_value === $max_value ) {
                 <div class="quantity-arrow-minus"> - </div>
                 <input
                         type="number"
+                        style="pointer-events: none"
                         id="<?php echo esc_attr( $input_id ); ?>"
                         class="<?php echo esc_attr( join( ' ', (array) $classes ) ); ?> quantity-num"
                         step="<?php echo esc_attr( $step ); ?>"
@@ -51,6 +52,7 @@ if ( $max_value && $min_value === $max_value ) {
         </div>
 
 		<?php do_action( 'woocommerce_after_quantity_input_field' ); ?>
+
 	</div>
 	<?php
 }
