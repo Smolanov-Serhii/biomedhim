@@ -194,7 +194,7 @@ function mytheme_add_woocommerce_support(){
 }
 add_action('after_setup_theme','mytheme_add_woocommerce_support');
 add_theme_support( 'wc-product-gallery-zoom' );
-add_theme_support( 'wc-product-gallery-lightbox' );
+//add_theme_support( 'wc-product-gallery-lightbox' );
 add_theme_support( 'wc-product-gallery-slider' );
 
 if( function_exists('acf_add_options_page') ) {
@@ -453,3 +453,12 @@ function devise_woo_rename_reviews_tab($tabs) {
 
     return $tabs;
 }
+
+add_filter('gettext', 'translate_text');
+add_filter('ngettext', 'translate_text');
+
+function translate_text($translated) {
+    $translated = str_ireplace('Подытог', 'Сумма', $translated);
+    return $translated;
+}
+

@@ -176,18 +176,21 @@ $(document ).ready(function() {
             plus.click(function() {
                 total = (col.val() * 1) + (step * 1);
                 col.val(total);
+                $('button.button').removeAttr("disabled");
                 var check = col.val();
-                if (check > 1){
+                if (total > min){
                     minus.removeClass('disable');
                 }
             });
             minus.click(function() {
                 var check = col.val();
-                if (check > min){
-                    col.val(parseInt(col.val())-step);
-                    minus.removeClass('disable');
-                } else {
+                total = (col.val() * 1) - (step * 1);
+                col.val(total);
+                $('button.button').removeAttr("disabled");
+                if (total <= min){
                     minus.addClass('disable');
+                } else {
+                    minus.removeClass('disable');
                 }
 
             });

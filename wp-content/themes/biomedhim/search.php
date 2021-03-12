@@ -15,11 +15,12 @@ get_header();
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
-				<h1 class="page-title">
+				<h1 class="page-title section-title">
 					<?php
 					/* translators: %s: search query. */
-					printf( esc_html__( 'Search Results for: %s', 'biomedhim' ), '<span>' . get_search_query() . '</span>' );
+					printf( esc_html__( 'Результаты поиска для:  %s', 'biomedhim' ), '<span>&nbsp ' . get_search_query() . '</span>' );
 					?>
+
 				</h1>
 			</header><!-- .page-header -->
 
@@ -49,5 +50,5 @@ get_header();
 	</main><!-- #main -->
 
 <?php
-get_sidebar();
+//get_sidebar();
 get_footer();

@@ -39,6 +39,7 @@ get_header();
                         $sub_photo = get_sub_field('fotografiya_sotrudnika');
                         $sub_email = get_sub_field('email_sotrudnika');
                         $sub_phone = get_sub_field('telefon_sotrudnika');
+                        $sub_mobphone = get_sub_field('mobilnij_telefon_sotrudnika');
                         ?>
                         <div class="employees__item">
                             <div class="employees__image">
@@ -48,7 +49,13 @@ get_header();
                                     echo get_template_directory_uri() . '/images/pers-photo-holder.png';
                                 } else echo $sub_photo;
                                 ?>
-                                " alt="<?php echo $sub_name . ',' . $sub_work; ?>">
+                                " alt="<?php echo $sub_name . ',' . $sub_work; ?>" style="
+                                    <?php
+                                        if (!$sub_photo) {
+                                            echo 'max-width: 80%; height: auto; margin: auto;';
+                                        }
+                                    ?>
+                                ">
                             </div>
                             <div class="employees__person">
                                 <div class="employees__name">
@@ -59,7 +66,8 @@ get_header();
                                 </div>
                                 <div class="employees__data">
                                     <a href="mailto:<?php echo $sub_email ?>"><?php echo $sub_email ?></a>
-                                    <a href="tel:<?php echo $sub_phone ?>"><?php echo $sub_phone ?></a>
+                                    <a href="tel:<?php echo $sub_phone ?>">тел: <?php echo $sub_phone ?></a>
+                                    <a href="tel:<?php echo $sub_mobphone ?>">моб: <?php echo $sub_mobphone ?></a>
                                 </div>
                             </div>
                         </div>

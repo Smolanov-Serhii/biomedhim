@@ -28,7 +28,13 @@ if ( $max_value && $min_value === $max_value ) {
 	$label = ! empty( $args['product_name'] ) ? sprintf( esc_html__( '%s quantity', 'woocommerce' ), wp_strip_all_tags( $args['product_name'] ) ) : esc_html__( 'Quantity', 'woocommerce' );
 	?>
         <div class="quantity__row">
-            <strong>Кол-во</strong>
+            <?php
+            if ( !is_cart() ) {
+                if ($step > 1){
+                    echo '<strong>Кол-во</strong>';
+                }
+            }
+            ?>
             <div class="quantity">
                 <?php do_action( 'woocommerce_before_quantity_input_field' ); ?>
                 <label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo esc_attr( $label ); ?></label>
@@ -48,7 +54,14 @@ if ( $max_value && $min_value === $max_value ) {
                         placeholder="<?php echo esc_attr( $placeholder ); ?>"
                         inputmode="<?php echo esc_attr( $inputmode ); ?>" />
                 <div class="quantity-arrow-plus"> + </div>
-                <span>минимум <?php echo $step?></span>
+
+                <?php
+                if ( !is_cart() ) {
+                    if ($step > 1){
+                        echo '<span>минимум ' . $step . '</span>';
+                    }
+                }
+                ?>
         </div>
 
 		<?php do_action( 'woocommerce_after_quantity_input_field' ); ?>

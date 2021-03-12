@@ -27,7 +27,14 @@ global $product;
         $UpakovkaCount = $product->get_meta('_step_qty');
     }
     ?>
+    <?php
+    if ($UpakovkaCount > 1){
+        ?>
+        <span class="upakovka-count">минимум<?php echo ' ' . $UpakovkaCount . ' ';?>шт</span>
 
-    <span class="upakovka-count">минимум<?php echo ' ' . $UpakovkaCount . ' ';?>шт</span>
-	<span class="price"><?php echo $price_html; ?>&nbsp/&nbspшт</span>
+        <?php
+    }
+    ?>
+    <span class="price"><?php echo $price_html; ?>&nbsp/&nbspшт</span>
+
 <?php endif; ?>

@@ -18,18 +18,7 @@
 defined( 'ABSPATH' ) || exit;
 
 get_header();
-$term = get_queried_object();
-$image = get_field('kartinka_v_shapku_kategorii', $term);
-$content = get_field('opisanie_kategorii', $term);
-if ($image){
-    ?>
-    <div class="categoby-banner bio-container">
-        <div class="categoby-banner__wrapper">
-            <img src="<?php echo $image; ?>" alt="<?php woocommerce_page_title(); ?>">
-        </div>
-    </div>
-    <?php
-}
+
 ?>
 
 <div class="page-market bio-container">
@@ -77,7 +66,7 @@ do_action( 'woocommerce_before_main_content' );
                     'number' => $number,
                     'orderby' => 'term_id',
                     'order' => 'ASC',
-                    'hide_empty' => $hide_empty,
+                    'hide_empty' => 1,
                     'include' => $ids,
                     'parent' => '0'
                 );
@@ -88,7 +77,7 @@ do_action( 'woocommerce_before_main_content' );
                         $args          = array(
                             'hierarchical' => 1,
                             'show_option_none' => '',
-                            'hide_empty' => 0,
+                            'hide_empty' => 1,
                             'parent' => $product_category->term_id,
                             'taxonomy' => 'product_cat'
                         );
@@ -127,6 +116,27 @@ do_action( 'woocommerce_before_main_content' );
         </div>
         <div class="product-container__list">
             <?php
+            $term = get_queried_object();
+            $image = get_field('kartinka_v_shapku_kategorii', $term);
+            $content = get_field('opisanie_kategorii', $term);
+            $title = get_field('zagolovok_dlya_kategorii', $term);
+            if ($image){
+                ?>
+                <div class="categoby-banner">
+                    <div class="categoby-banner__wrapper">
+                        <img src="<?php echo $image; ?>" alt="<?php woocommerce_page_title(); ?>">
+                        <h2 class="categoby-banner__item-title">
+                            <?php echo $title;?>
+                        </h2>
+                    </div>
+                    <div class="categoby-banner__description">
+                        <div class="categoby-banner__desc-wrap">
+                            <?php echo $content;?>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }
             if ( woocommerce_product_loop() ) {
 
                 /**
@@ -197,8 +207,33 @@ do_action( 'woocommerce_before_main_content' );
         <?php echo do_shortcode( '[featured_products per_page="5" columns="5" orderby="date" order="desc"]' ); ?>
     </div>
     <div class="category-bottom bio-container">
-        <div class="category-bottom__description">
-            <?php echo $content;?>
+        <div class="category-bottom__sert">
+            <div class="category-bottom__sert-title">
+                <h2 class="section-title">Лицензии и сертификаты
+                    <span>
+                        <svg width="38" height="40" viewBox="0 0 38 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M27 0.75H38L11 39.25H0L27 0.75Z" fill="#86C9DE"/>
+                        </svg>
+                    </span>
+                </h2>
+            </div>
+            <div class="category-bottom__sert-cont">
+                <?php
+                $term = get_queried_object();
+                if( have_rows('perechen_liczenzij', $term) ):
+                    ?>
+                    <?php
+                    while( have_rows('perechen_liczenzij', $term) ) : the_row();
+                        $sub_value = get_sub_field('kartinka_sertifikata_ili_liczenzii', $term);
+                        ?>
+                        <a class="fresco" href="<?php echo $sub_value?>">
+                            <img src="<?php echo $sub_value?>">
+                        </a>
+                    <?php
+                    endwhile;
+                endif;
+                ?>
+            </div>
         </div>
         <div class="product-cat__form">
             <h2 class="bio-map__title section-title">
