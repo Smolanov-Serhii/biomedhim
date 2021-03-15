@@ -204,7 +204,7 @@ do_action( 'woocommerce_before_main_content' );
                         </svg>
                     </span>
         </h2>
-        <?php echo do_shortcode( '[featured_products per_page="5" columns="5" orderby="date" order="desc"]' ); ?>
+        <?php echo do_shortcode( '[featured_products per_page="6" columns="6" orderby="date" order="desc"]' ); ?>
     </div>
     <div class="category-bottom bio-container">
         <div class="category-bottom__sert">

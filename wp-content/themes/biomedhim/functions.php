@@ -462,3 +462,10 @@ function translate_text($translated) {
     return $translated;
 }
 
+//add_filter( 'woocommerce_output_related_products_args', 'jk_related_products_args' );
+//function jk_related_products_args( $args ) {
+//    $args['posts_per_page'] = 6; // количество "Похожих товаров"
+//    $args['columns'] = 6; // количество колонок
+//    return $args;
+//}
+

@@ -857,6 +857,16 @@ input[type="number"] {
   &__desc-wrap{
     margin-top: 20px;
     margin-bottom: 20px;
+    h2{
+      margin-bottom: 14px;
+    }
+    ul{
+      list-style: disc;
+      padding-left: 20px;
+      li{
+        margin-bottom: 16px;
+      }
+    }
   }
   &__wrapper{
     height: 400px;
@@ -901,6 +911,23 @@ input[type="number"] {
 }
 .woocommerce-page.columns-5 ul.products li.product, .woocommerce.columns-5 ul.products li.product{
   width: calc(20% - 20px);
+}
+.woocommerce .products ul, .woocommerce ul.products{
+
+}
+.woocommerce-page.columns-6 ul.products li.product, .woocommerce.columns-6 ul.products li.product{
+  width: calc(16.66666% - 20px);
+  h2{
+    font-size: 12px;
+    max-height: 40px;
+    overflow: hidden;
+  }
+  .button{
+    font-size: 12px;
+  }
+  .price{
+    font-size: 16px;
+  }
 }
 .category-bottom{
   display: flex;
