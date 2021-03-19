@@ -206,33 +206,50 @@ do_action( 'woocommerce_before_main_content' );
         </h2>
         <?php echo do_shortcode( '[featured_products per_page="6" columns="6" orderby="date" order="desc"]' ); ?>
     </div>
+    <div class="category-video bio-container">
+        <?php
+        $videotitle = get_field('zagolovok_nad_video_v_kategorii', $term);
+        $content = get_field('opisanie_dlya_bloka_s_video', $term);
+        $video = get_field('video_na_straniczu_kategorii', $term);
+
+        if ($video){
+            echo '<h2 class="category-video__title section-title">'. $videotitle .'<span>
+                        <svg width="38" height="40" viewBox="0 0 38 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M27 0.75H38L11 39.25H0L27 0.75Z" fill="#86C9DE"></path>
+                        </svg>
+                    </span></h2>';
+            }
+
+        echo '<div class="category-video__video">' . $video . '</div>';
+        echo '<div class="category-video__content">' . $content . '</div>';
+        ?>
+    </div>
     <div class="category-bottom bio-container">
         <div class="category-bottom__sert">
             <div class="category-bottom__sert-title">
-                <h2 class="section-title">Лицензии и сертификаты
+                <?php
+                $images = get_field('perechen_liczenzij', $term);
+                if ($images){
+                    echo '<h2 class="section-title">Лицензии и сертификаты
                     <span>
                         <svg width="38" height="40" viewBox="0 0 38 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M27 0.75H38L11 39.25H0L27 0.75Z" fill="#86C9DE"/>
                         </svg>
                     </span>
-                </h2>
+                </h2>';
+                }
+                ?>
+
             </div>
             <div class="category-bottom__sert-cont">
                 <?php
-                $term = get_queried_object();
-                if( have_rows('perechen_liczenzij', $term) ):
-                    ?>
-                    <?php
-                    while( have_rows('perechen_liczenzij', $term) ) : the_row();
-                        $sub_value = get_sub_field('kartinka_sertifikata_ili_liczenzii', $term);
-                        ?>
-                        <a class="fresco" href="<?php echo $sub_value?>">
-                            <img src="<?php echo $sub_value?>">
+                if( $images ): ?>
+                        <?php foreach( $images as $image ): ?>
+                        <a href="<?php echo esc_url($image['url']); ?>" class="fresco">
+                            <img src="<?php echo esc_url($image['sizes']['medium']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
                         </a>
-                    <?php
-                    endwhile;
-                endif;
-                ?>
+                        <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
         <div class="product-cat__form">

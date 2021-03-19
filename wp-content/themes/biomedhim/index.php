@@ -175,23 +175,14 @@ get_header();
             <div class="swiper-container">
                 <div class="bio-clients__wrapper swiper-wrapper">
                     <?php
-                    $args = array(
-                        'post_type' => 'clients',
-                        'showposts' => "-1", //сколько показать статей
-                        'orderby' => "data", //сортировка по дате
-                        'caller_get_posts' => 1);
-                    $my_query = new wp_query($args);
-                    if ($my_query->have_posts()) {
-                        while ($my_query->have_posts()) {
-                            $my_query->the_post();
-                            $post_id = get_the_ID();
-                            ?>
+                    $images  = get_field('slajder_nashi_klienty');
+                    if( $images  ): ?>
+                        <?php foreach( $images  as $image ): ?>
                             <div class="bio-clients__item swiper-slide">
-                                <img src="<?php echo the_field('kartinka_dlya_klienty');?>" alt="<?php the_title();?>">
+                                <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
                             </div>
-                        <?php }
-                    }
-                    wp_reset_query(); ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
                 <div class="swiper-pagination"></div>
             </div>

@@ -10,6 +10,27 @@ $(document ).ready(function() {
         });
     }
 
+    if ($('.custom-chackout').length){
+        $('#billing_country_field').appendTo('.custom-chackout__right');
+        $('#billing_state_field').appendTo('.custom-chackout__right');
+        $('#city_field').appendTo('.custom-chackout__right');
+        $('#street_field').appendTo('.custom-chackout__right');
+        $('#house_field').appendTo('.custom-chackout__right');
+        $('#kvof_field').appendTo('.custom-chackout__right');
+        $('#payment').appendTo('.custom-chackout__pay');
+
+
+
+        $('.custom-chackout__rev input').blur(function(){
+            if(!$(this).val()){
+                $(this).closest('p').find('label').addClass('input-enter');
+                console.log('enter');
+            } else{
+                $(this).closest('p').find('label').removeClass('input-enter');
+            }
+        });
+    }
+
     if ($('.bio-clients').length){
         var Partners = new Swiper('.bio-clients .swiper-container', {
             slidesPerView: 5,
@@ -91,7 +112,7 @@ $(document ).ready(function() {
                     // Макет содержимого.
                     iconContentLayout: MyIconContentLayout
                 });
-
+            myMap.behaviors.disable('scrollZoom');
             myMap.geoObjects
                 // .add(myPlacemark)
                 .add(myPlacemarkWithContent);
@@ -121,6 +142,7 @@ $(document ).ready(function() {
                     '<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
                 ),
 
+
                 myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
                 }, {
                     // Опции.
@@ -149,7 +171,7 @@ $(document ).ready(function() {
                     // Макет содержимого.
                     iconContentLayout: MyIconContentLayout
                 });
-
+            myMap.behaviors.disable('scrollZoom');
             myMap.geoObjects
                 // .add(myPlacemark)
                 .add(myPlacemarkWithContent);

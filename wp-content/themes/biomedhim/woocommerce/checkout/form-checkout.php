@@ -35,10 +35,19 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
 		<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
 
-		<div class="col2-set" id="customer_details">
-			<div class="col-1">
-				<?php do_action( 'woocommerce_checkout_billing' ); ?>
-			</div>
+		<div class="custom-chackout" id="customer_details">
+            <div class="custom-chackout__rev">
+                <div class="custom-chackout__left">
+                    <?php do_action( 'woocommerce_checkout_billing' ); ?>
+                </div>
+                <div class="custom-chackout__right">
+
+                </div>
+
+            </div>
+            <div class="custom-chackout__pay">
+
+            </div>
 		</div>
 
 		<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
