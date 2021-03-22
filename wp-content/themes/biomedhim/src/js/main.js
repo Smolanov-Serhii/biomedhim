@@ -10,6 +10,17 @@ $(document ).ready(function() {
         });
     }
 
+    if ($('.mobile-nav').length){
+        $( ".mobile-nav__close" ).click(function() {
+            $('.mobile-nav').fadeOut(300);
+            $('body').removeClass('lock');
+        });
+        $( ".burger-button" ).click(function() {
+            $('.mobile-nav').fadeIn(300);
+            $('body').addClass('lock');
+        });
+    }
+
     if ($('.custom-chackout').length){
         $('#billing_country_field').appendTo('.custom-chackout__right');
         $('#billing_state_field').appendTo('.custom-chackout__right');
@@ -46,6 +57,16 @@ $(document ).ready(function() {
                     slidesPerView: 5,
                     spaceBetween: 30,
                 },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                    centeredSlides: false,
+                },
+                400: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                    centeredSlides: false,
+                },
                 240: {
                     slidesPerView: 1,
                     spaceBetween: 30,
@@ -55,7 +76,7 @@ $(document ).ready(function() {
         });
     }
     if ($('#map').length){
-        if (  jQuery(window).width() >= 1100 ) {
+        if (  jQuery(window).width() >= 1024 ) {
 
             var FirstCoord = 54.830453;
             var SecondCoord = 56.086357;

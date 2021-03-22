@@ -27,13 +27,13 @@ const styleFiles = [
 ]
 //Порядок подключения js файлов
 const scriptFiles = [
-   // './src/js/jquery-3.5.1.js',
-   // './src/js/fresco.min.js',
+   './src/js/jquery-3.5.1.js',
+   './src/js/fresco.min.js',
    // './src/js/aos.js',
    // './src/js/slick.js',
    // './src/js/perfect-scrollbar.js',
    // './src/js/jquery.selectric.js',
-   // './src/js/swiper-bundle.js',
+   './src/js/swiper-bundle.js',
    './src/js/main.js'
 ]
 

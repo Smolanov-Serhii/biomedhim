@@ -1865,7 +1865,7 @@ function my_cities( $cities ) {
 }
 
 
-//add_action( 'woocommerce_cart_calculate_fees', 'progressive_discount_based_on_cart_total', 10, 1 );
+add_action( 'woocommerce_cart_calculate_fees', 'progressive_discount_based_on_cart_total', 10, 1 );
 function progressive_discount_based_on_cart_total( $cart_object ) {
 
     if ( is_admin() && ! defined( 'DOING_AJAX' ) )
@@ -1873,12 +1873,16 @@ function progressive_discount_based_on_cart_total( $cart_object ) {
 
     $cart_total = $cart_object->cart_contents_total; // Cart total
 
-    if ( $cart_total > 150.00 )
-        $percent = 15; // 15%
-    elseif ( $cart_total >= 100.00 && $cart_total < 150.00 )
-        $percent = 10; // 10%
-    elseif ( $cart_total >= 50.00 && $cart_total < 100.00 )
-        $percent =  5; // 5%
+    if ( $cart_total > 300000.00 )
+        $percent = 10; // 15%
+    elseif ( $cart_total >= 100000.00 && $cart_total < 299999.00 )
+        $percent = 10; // 8%
+    elseif ( $cart_total >= 50000.00 && $cart_total < 99999.00 )
+        $percent = 8; // 8%
+    elseif ( $cart_total >= 15000.00 && $cart_total < 49999.00 )
+        $percent = 5; // 5%
+    elseif ( $cart_total >= 5000.00 && $cart_total < 14999.00 )
+        $percent =  3; // 3%
     else
         $percent = 0;
 
