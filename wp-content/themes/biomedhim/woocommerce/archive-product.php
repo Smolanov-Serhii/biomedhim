@@ -195,17 +195,6 @@ do_action( 'woocommerce_before_main_content' );
             ?>
         </div>
     </div>
-    <div class="recomender-products bio-container">
-        <h2 class="bio-map__title section-title">
-            Ремомендуемые товары
-            <span>
-                        <svg width="38" height="40" viewBox="0 0 38 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M27 0.75H38L11 39.25H0L27 0.75Z" fill="#86C9DE"/>
-                        </svg>
-                    </span>
-        </h2>
-        <?php echo do_shortcode( '[featured_products per_page="6" columns="6" orderby="date" order="desc"]' ); ?>
-    </div>
     <div class="category-video bio-container">
         <?php
         $videotitle = get_field('zagolovok_nad_video_v_kategorii', $term);
@@ -221,9 +210,34 @@ do_action( 'woocommerce_before_main_content' );
             }
 
         echo '<div class="category-video__video">' . $video . '</div>';
-        echo '<div class="category-video__content">' . $content . '</div>';
+//        echo '<div class="category-video__content">' . $content . '</div>';
         ?>
     </div>
+    <?php
+    if( wp_is_mobile() ) {
+        // тут выполняем действия только для мобильных устройств.
+    } else {
+        ?>
+        <div class="recomender-products bio-container">
+            <h2 class="bio-map__title section-title">
+                Ремомендуемые товары
+                <span>
+                        <svg width="38" height="40" viewBox="0 0 38 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M27 0.75H38L11 39.25H0L27 0.75Z" fill="#86C9DE"/>
+                        </svg>
+                    </span>
+            </h2>
+            <?php echo do_shortcode( '[featured_products per_page="6" columns="6" orderby="date" order="desc"]' ); ?>
+        </div>
+        <?php
+    }
+    ?>
+
+    <?php $category = get_queried_object();
+     if($category->term_id == 35) { ?>
+        <?php get_template_part('inc/license'); ?>  <!-- Блок про компанию -->
+    <?php } ?>
+
     <div class="category-bottom bio-container">
         <div class="category-bottom__sert">
             <div class="category-bottom__sert-title">
