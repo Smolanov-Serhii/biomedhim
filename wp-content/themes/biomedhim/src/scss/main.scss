@@ -60,6 +60,162 @@ body{
     font-weight: bolder!important;
   }
 }
+.woocommerce-cart-form__cart-item.cart_item .product-lnk__container .article-code{
+  @media all and (max-width: 1024px) {
+    display: flex!important;
+    flex-direction: column;
+  }
+}
+.woocommerce{
+  table.shop_table{
+    overflow-y: hidden;
+    thead{
+      @media all and (max-width: 1024px) {
+        display: none;
+      }
+    }
+    tbody{
+      @media all and (max-width: 1024px) {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -20px;
+        width: calc(100% + 20px);
+      }
+
+      tr {
+        &.woocommerce-shipping-totals{
+          width: 100%;
+          margin-right: 0;
+        }
+        @media all and (max-width: 1024px) {
+          width: calc(33.33333% - 20px);
+          margin-right: 20px;
+          margin-bottom: 20px;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid #eef3f8;
+          position: relative;
+          &:last-child{
+            display: flex;
+            width: 100%;
+            text-align: right;
+            margin-right: 0;
+            td{
+              padding: 0;
+            }
+          }
+          td{
+            border: none!important;
+            &.product-name{
+              flex: 1;
+              display: flex!important;
+              flex-direction: column;
+              &:before{
+                display: none;
+              }
+            }
+            .quantity{
+              margin-left: auto;
+            }
+            .article-code{
+              display: flex;
+              flex-direction: column;
+              align-items: flex-end;
+              margin-top: 10px;
+            }
+            &.product-quantity{
+              width: 100%;
+            }
+            &.product-price{
+              width: 100%;
+              font-size: 14px;
+              line-height: 122%;
+              text-align: right;
+              &:before{
+                content: 'Цена';
+              }
+            }
+            &.actions{
+              .button{
+                font-size: 16px;
+              }
+            }
+            &.product-subtotal{
+              width: 100%;
+              font-size: 14px;
+              line-height: 122%;
+              text-align: right;
+              &:before{
+                content: 'Итого';
+              }
+            }
+            &.product-remove{
+              position: absolute;
+              top: 0;
+              right: 0;
+            }
+            .product-thumbnail__container{
+              width: 100%;
+              height: auto;
+              margin-right: 0;
+              a{
+                width: 100%;
+                height: auto;
+                img{
+                  width: 100%;
+                  height: auto;
+                }
+              }
+            }
+          }
+          &.devider{
+            display: none;
+          }
+        }
+        @media all and (max-width: 1024px) {
+          width: calc(50% - 20px);
+        }
+      }
+      @media all and (max-width: 768px) {
+        .product-quantity{
+          font-size: 16px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .product-lnk__container{
+          text-align: center;
+          a{
+            font-size: 15px;
+            line-height: 122%;
+            margin-top: 10px;
+            display: block;
+            margin-right: 0;
+            width: 100%;
+            font-weight: 700;
+          }
+        }
+        .article-code{
+          align-items: center!important;
+        }
+      }
+    }
+  }
+}
+
+#shipping_method{
+  @media all and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    li{
+      display: inline-flex;
+      flex-direction: row-reverse;
+      input{
+        margin-left: 20px!important;
+      }
+    }
+  }
+}
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -92,6 +248,11 @@ input[type="number"] {
     line-height: 122%;
     text-align: justify;
     color: #A9C0D0;
+  }
+}
+.woocommerce div.product p.price{
+  @media all and (max-width: 768px) {
+      display: none;
   }
 }
 .quantity__row{
@@ -156,6 +317,13 @@ input[type="number"] {
     }
   }
 }
+.woocommerce div.product div.images.woocommerce-product-gallery{
+  @media all and (max-width: 768px) {
+    width: 80%;
+    height: auto;
+    margin: auto auto 20px auto;
+  }
+}
 .product_title{
   font-family: Montserrat;
   font-style: normal;
@@ -165,6 +333,9 @@ input[type="number"] {
   text-transform: uppercase;
   color: #112A3D;
   margin-bottom: 11px;
+  @media all and (max-width: 768px) {
+    font-size: 26px;
+  }
 }
 .woocommerce div.product div.summary{
   margin-bottom: 0;
@@ -245,6 +416,21 @@ input[type="number"] {
     background-color: #0E5A9E;
   }
 }
+.woocommerce div.product form.cart{
+  @media all and (max-width: 500px) {
+    width: 100%;
+  }
+  .button{
+    @media all and (max-width: 768px) {
+      font-size: 24px;
+      padding: 20px;
+      margin-top: 20px!important;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+  }
+}
 .single-product{
   .cart{
     display: inline-flex;
@@ -264,6 +450,9 @@ input[type="number"] {
     font-size: 36px;
     line-height: 122%;
     color: #4BC3E8;
+    @media all and (max-width: 768px) {
+      font-size: 24px;
+    }
     strong{
       position: absolute;
       bottom: 5px;
@@ -2434,6 +2623,9 @@ input[type="number"] {
 }
 .custom-chackout{
   display: flex;
+  @media all and (max-width: 768px) {
+    flex-wrap: wrap;
+  }
   &#customer_details{
     p{
       position: relative;
@@ -2476,6 +2668,13 @@ input[type="number"] {
     width: 65%;
     margin-right: 70px;
     justify-content: space-between;
+    @media all and (max-width: 1024px) {
+     flex-wrap: wrap;
+    }
+    @media all and (max-width: 768px) {
+      width: 100%;
+      margin-right: 0;
+    }
     p{
       width: 100% !important;
       float: none;
@@ -2494,6 +2693,9 @@ input[type="number"] {
   }
   &__left, &__right{
     width: calc(50% - 33px);
+    @media all and (max-width: 1024px) {
+      width: 100%;
+    }
   }
   &__left{
     &::before{
@@ -2507,6 +2709,10 @@ input[type="number"] {
   }
   &__pay{
     width: calc(35% - 70px);
+    min-width: 300px;
+    @media all and (max-width: 768px) {
+      width: 100%;
+    }
     &::before{
       content: "Способ оплаты";
     }
@@ -2518,6 +2724,56 @@ input[type="number"] {
     background-color: #112a3d;
   }
 }
+
+#order_review{
+  .woocommerce table.shop_table tbody tr{
+    @media all and (max-width: 1024px) {
+      width: 100%;
+    }
+  }
+  table{
+    @media all and (max-width: 1024px) {
+      border: none;
+    }
+  }
+  table.shop_table{
+    @media all and (max-width: 1024px) {
+      display: flex;
+      flex-direction: column;
+    }
+    tbody{
+      @media all and (max-width: 1024px) {
+        width: 100%;
+        .cart_item{
+          width: 100%;
+          margin-bottom: 0;
+          margin-right: 0;
+          border: none;
+          td{
+            padding: 5px 0;
+          }
+          .product-name{
+            .product-quantity{
+              @media all and (max-width: 768px) {
+                flex-direction: row;
+              }
+              &:before{
+                content: "Колличество: ";
+              }
+            }
+          }
+          .product-total{
+            &:before{
+              content: "Цена: ";
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
 #order_review_heading{
   margin-top: 40px;
   margin-bottom: 20px;
@@ -2634,6 +2890,9 @@ input[type="number"] {
     display: flex;
     padding: 20px;
     margin-bottom: 20px;
+    @media all and (max-width: 600px) {
+      flex-direction: column;
+    }
     &.type-page{
       .search__image{
         display: none;
@@ -2655,6 +2914,12 @@ input[type="number"] {
   &__image{
     width: 20%;
     margin-right: 40px;
+    min-width: 150px;
+    @media all and (max-width: 600px) {
+      width: 100%;
+      margin-bottom: 40px;
+      margin-right: 0;
+    }
     img{
       width: 100%;
       height: auto;
@@ -2662,6 +2927,9 @@ input[type="number"] {
   }
   &__content{
     width: calc(80% - 40px);
+    @media all and (max-width: 600px) {
+      width: 100%;
+    }
     .entry-summary{
       margin-top: 20px;
       p{

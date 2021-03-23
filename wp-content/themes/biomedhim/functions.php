@@ -1891,3 +1891,6 @@ function progressive_discount_based_on_cart_total( $cart_object ) {
         $cart_object->add_fee( "Скидка ($percent%)", -$discount, true );
     }
 }
+remove_action('load-update-core.php', 'wp_update_plugins');
+add_filter('pre_site_transient_update_plugins', create_function('$a', "return null;") );
+wp_clear_scheduled_hook('wp_update_plugins');
