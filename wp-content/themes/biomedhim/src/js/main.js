@@ -199,14 +199,17 @@ $(document ).ready(function() {
         });
     }
 
-    $(".menu-item-has-children", "#category-menu").hover(
-        function() {
-            $(this).find(".sub-menu").fadeIn(300);
-        },
-        function() {
-            $(this).find(".sub-menu").fadeOut(300);
-        }
-    );
+    if (  jQuery(window).width() > 1024 ) {
+        $(".menu-item-has-children", "#category-menu").hover(
+            function() {
+                $(this).find(".sub-menu").fadeIn(300);
+                console.log('in');
+            },
+            function() {
+                $(this).find(".sub-menu").fadeOut(300);
+            }
+        );
+    }
 
     if ($('.quantity').length){
         $( '.quantity' ).each(function( index ) {

@@ -50,25 +50,37 @@
     <div class="mobile-nav__title">
         Меню
     </div>
-    <div class="mobile-nav__page">
-        <?php
-        wp_nav_menu(
-            array(
-                'theme_location' => 'page-menu',
-                'menu_id' => 'page-menu',
-            )
-        );
-        ?>
-    </div>
-    <div class="mobile-nav__category">
-        <?php
-        wp_nav_menu(
-            array(
-                'theme_location' => 'category-menu',
-                'menu_id' => 'category-menu',
-            )
-        );
-        ?>
+    <div class="mobile-nav__overflow">
+        <div class="mobile-nav__page">
+            <?php
+            wp_nav_menu(
+                array(
+                    'theme_location' => 'page-menu',
+                    'menu_id' => 'page-menu',
+                )
+            );
+            ?>
+        </div>
+        <div class="header__accnav">
+            <?php
+            wp_nav_menu(
+                array(
+                    'theme_location' => 'top-menu',
+                    'menu_id' => 'top-menu',
+                )
+            );
+            ?>
+        </div>
+        <div class="mobile-nav__category">
+            <?php
+            wp_nav_menu(
+                array(
+                    'theme_location' => 'category-menu',
+                    'menu_id' => 'category-menu',
+                )
+            );
+            ?>
+        </div>
     </div>
     <div class="mobile-nav__search">
         <div class="mobile-nav__search-cont">

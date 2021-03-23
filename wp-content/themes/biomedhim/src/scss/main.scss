@@ -564,6 +564,41 @@ input[type="number"] {
   top: 0;
   left: 0;
   z-index: 999;
+  max-width: 317px;
+  li{
+    margin-bottom: 8px;
+  }
+  #category-menu{
+    .sub-menu{
+      display: block!important;
+      padding-left: 20px;
+      padding-top: 20px;
+      margin-bottom: 10px;
+      li{
+        position: relative;
+        margin-bottom: 5px;
+        a{
+          font-size: 15px;
+          line-height: 170%;
+        }
+        &:before{
+          position: absolute;
+          content: "-";
+          top: 0;
+          left: -14px;
+          color: white;
+        }
+      }
+    }
+  }
+  .header__accnav{
+    padding: 37px 20px 24px;
+  }
+  &__overflow{
+    margin-top: 37px;
+    height: calc(100vh - 155px);
+    overflow-y: scroll;
+  }
   &__search{
     display: flex;
     align-items: flex-end;
@@ -615,7 +650,7 @@ input[type="number"] {
     cursor: pointer;
   }
   .mobile-nav__page{
-    padding: 37px 20px 24px 20px;
+    padding: 0 20px 0 20px;
   }
   .mobile-nav__category{
     padding: 37px 20px 24px 20px;
@@ -663,7 +698,6 @@ input[type="number"] {
   &__cat-nav{
     border-top: 1px solid #4bc3e8;
     border-bottom: 1px solid #4bc3e8;
-    padding: 8px 0;
     margin-bottom: 19px;
     @media all and (max-width: 1020px) {
       display: none;
@@ -677,20 +711,30 @@ input[type="number"] {
           padding: 10px;
         }
         a{
+          display: inline-flex;
+          padding: 8px 0;
           @media all and (max-width: 1200px) {
             font-size: 12px;
           }
         }
         &.menu-item-has-children{
           position: relative;
+          &:hover{
+            .sub-menu{
+              opacity: 1;
+              pointer-events: all;
+            }
+          }
           .sub-menu{
-            display: none;
-            padding-top: 20px;
+            transition: 0.2s;
+            opacity: 0;
+            pointer-events: none;
             position: absolute;
             top: 100%;
             left: 0;
             background-color: white;
             z-index: 5;
+            box-shadow: 0 10px 10px 0 rgba(0,0,0,0.75);
             li{
               padding: 10px 20px;
               border: none;
