@@ -22,10 +22,18 @@ global $woocommerce;
 global $product;
 $currency_code = get_woocommerce_currency_symbol( $currency = '' );
 $current_price = $price = get_post_meta( get_the_ID(), '_regular_price', true);
+$value = get_field('edinicza_izmereniya');
 ?>
 <p class="<?php echo esc_attr( apply_filters( 'woocommerce_product_price_class', 'price' ) ); ?>">
     <div class="custom-price">
     <strong>Цена:</strong>
-        <?php echo $product->get_price_html() . ' / шт'; ?>
+        <?php
+            if ($current_price){
+                echo $product->get_price_html() . ' / ' . $value;
+            } else {
+                echo "по запросу";
+            }
+        ?>
+
     </div>
 </p>

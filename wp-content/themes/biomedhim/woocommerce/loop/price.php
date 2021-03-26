@@ -20,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 global $product;
+$value = get_field('edinicza_izmereniya');
 ?>
 
 <?php if ( $price_html = $product->get_price_html() ) :
@@ -35,6 +36,6 @@ global $product;
         <?php
     }
     ?>
-    <span class="price"><?php echo $price_html; ?>&nbsp/&nbspшт</span>
+    <span class="price"><?php echo $price_html; ?>&nbsp/&nbsp<?php echo $value?></span>
 
 <?php endif; ?>
