@@ -1875,8 +1875,20 @@ input[type="number"] {
       margin-bottom: 65px;
     }
   }
-  .ajax-loader{
+  p{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    input{
+      text-align: center;
+    }
+    .ajax-loader{
+      margin-top: 20px;
+      width: 24px;
+    }
+  }
+  .ajax-loader{
     background-repeat: no-repeat;
   }
 
@@ -1960,6 +1972,19 @@ input[type="number"] {
       padding: 30px 10px 0 10px;
     }
     form{
+      p{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        input{
+          text-align: center;
+        }
+        .ajax-loader{
+          margin-top: 20px;
+          width: 24px;
+        }
+      }
       @media all and (max-width: 1024px) {
         display: flex;
         flex-wrap: wrap;
@@ -2019,7 +2044,6 @@ input[type="number"] {
     }
   }
   .ajax-loader{
-    width: 100%;
     background-repeat: no-repeat;
   }
 

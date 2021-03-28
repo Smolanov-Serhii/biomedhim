@@ -23,6 +23,11 @@ global $product;
 $currency_code = get_woocommerce_currency_symbol( $currency = '' );
 $current_price = $price = get_post_meta( get_the_ID(), '_regular_price', true);
 $value = get_field('edinicza_izmereniya');
+if ($value){
+
+} else {
+    $value = 'шт.';
+}
 ?>
 <p class="<?php echo esc_attr( apply_filters( 'woocommerce_product_price_class', 'price' ) ); ?>">
     <div class="custom-price">

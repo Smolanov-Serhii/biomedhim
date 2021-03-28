@@ -21,6 +21,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $product;
 $value = get_field('edinicza_izmereniya');
+if ($value){
+
+} else {
+    $value = 'шт.';
+}
 ?>
 
 <?php if ( $price_html = $product->get_price_html() ) :
